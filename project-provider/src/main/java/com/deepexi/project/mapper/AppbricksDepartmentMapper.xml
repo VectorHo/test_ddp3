@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deepexi.project.mapper.AppbricksDepartmentMapper">
+    <resultMap type="com.deepexi.project.domain.dto.AppbricksDepartmentDto" id="AppbricksDepartmentDtoResult">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="nameEn" column="name_en" />
+        <result property="code" column="code" />
+        <result property="parentId" column="parent_id" />
+        <result property="updateTime" column="update_time" />
+        <result property="createTime" column="create_time" />
+        <result property="projectNo" column="project_no" />
+        <result property="shopId" column="shop_id" />
+        <result property="isShopRoot" column="is_shop_root" />
+        <result property="tenantCode" column="tenant_code" />
+        <result property="dr" column="dr" />
+    </resultMap>
+    <select id="findList" resultType="com.deepexi.project.domain.eo.AppbricksDepartment">
+        SELECT * FROM appbricks_department WHERE 1=1
+    </select>
+
+    <update id="deleteByIds">
+        UPDATE appbricks_department set dr=1 where id in
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+</mapper>
